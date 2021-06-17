@@ -226,6 +226,15 @@ void options1 (void)
             break;
 		}
 
+		if (in_key_pressed( IN_KEY_SCANCODE_y ))
+		{
+		    zx_cls(PAPER_WHITE | INK_BLUE);
+			beforeDrawing ();
+			bezierCurve6();
+            afterDrawing ();
+            break;
+		}
+
 
     }//end while
 }//end options1
@@ -262,11 +271,11 @@ void printOptions (void)
 		printf ("4 - Set P3\n");
         printf ("    P3_X_setting = %d\n", P3_X_setting);
         printf ("    P3_Y_setting = %d\n", P3_Y_setting);
-        printf ("\n\n");
+        printf ("\n");
 
         printf ("Q- Original Bezier formula");
         printf ("\n");
-        printf ("W-T Optimzied Bezier formulas");
+        printf ("W-T Optimzied Bezier formulas\n");
 
         printf ("Press SPACE to STOP drawing");
     }
@@ -282,23 +291,6 @@ void main()
 	__endasm
 
 	zx_cls(PAPER_WHITE | INK_BLUE);
-
-	yHeight = 190;
-	xWidth = 255;
-	X_start = 255;
-	Y_start = 45;
-	sineCycle = 0;
-	waveHeight = 40;
-	halfHeight = waveHeight / 2;
-	freq = 2.0;
-    offSet = 46;
-
-
-    amplitude = 10;
-    phase_shift = 0;
-    vertical_shift = 87;
-
-
 
 
     while (1)

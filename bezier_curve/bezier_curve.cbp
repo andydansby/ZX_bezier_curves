@@ -20,6 +20,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="../bezier.h" />
+		<Unit filename="../licensing.txt" />
 		<Unit filename="../main.c">
 			<Option compilerVar="CC" />
 		</Unit>

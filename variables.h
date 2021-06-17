@@ -5,48 +5,27 @@ const float QUARTERPI = 0.785398;
 
 signed int x, y;
 float t;
-float YY, yy;
 
-float sinCalc = 0;
-
-unsigned char yHeight = 172;//height of the display
+unsigned char yHeight = 191;//height of the display
 unsigned char xWidth = 255;//width of the display
-unsigned char X_start = 255;
-unsigned char Y_start = 45;
-unsigned float sineCycle = 0;
 
-unsigned char waveHeight = 40;
-int halfHeight = 20;//waveHeight / 2
-unsigned char offSet = 46;
-float freq = 2;
-
-
-
-int amplitude;
-int period;
-int phase_shift;
-int vertical_shift;
 
 //start point
-int P0_X_setting = 1;
-int P0_Y_setting = 96;
+unsigned char P0_X_setting = 1;
+unsigned char P0_Y_setting = 96;
 
-int P1_X_setting = 50;
-int P1_Y_setting = 5;
+//attractor 1
+unsigned char P1_X_setting = 50;
+unsigned char P1_Y_setting = 5;
 
-int P2_X_setting = 200;
-int P2_Y_setting = 185;
+//attractor 1
+unsigned char P2_X_setting = 200;
+unsigned char P2_Y_setting = 185;
 
 //end point
 int P3_X_setting = 254;
 int P3_Y_setting = 96;
 
-
-
-
-float delta = 3.14/2;
-int x_offset = 128;
-int y_offset = 90;
 
 
 long microSec;
