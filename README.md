@@ -1,6 +1,8 @@
 # ZX_bezier_curves
 Cubic Bezier Curves of the ZX Spectrum.  Hell ya.
 
+First I just learned it's pronounced Bee-Zee-Ay, so I've said it wrong for too many years
+
 Set P0 and P3 as start and end points.
 Set P1 and P2 as the Curve attractors.
 
