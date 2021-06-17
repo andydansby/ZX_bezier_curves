@@ -407,8 +407,6 @@ void bezierCurve6(void)
         ax = p3_x - p0_x - cx - bx;
         ay = p3_y - p0_y - cy - by;
 
-        //(3ah)t^2 + (3ah^2 + 2bh)t + ah^3 + bh^2 + ch
-
         xu = (ax * t3) + (bx * t2) + (cx * t) + p0_x;
         yu = (ay * t3) + (by * t2) + (cy * t) + p0_y;
 
