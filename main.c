@@ -66,9 +66,9 @@ void set_P0()
 	scanf("%d", &P0_Y_setting);
 
 	if (P0_X_setting > 254) P0_X_setting = 254;
-	if (P0_X_setting < 1) P0_X_setting = 1;
+	if (P0_X_setting < 1  ) P0_X_setting = 1;
 	if (P0_Y_setting > 190) P0_Y_setting = 190;
-	if (P0_Y_setting < 1) P0_Y_setting = 1;
+	if (P0_Y_setting < 1  ) P0_Y_setting = 1;
 
 }
 
@@ -90,9 +90,9 @@ void set_P1()
 	scanf("%d", &P1_Y_setting);
 
 	if (P1_X_setting > 254) P1_X_setting = 254;
-	if (P1_X_setting < 1) P1_X_setting = 1;
+	if (P1_X_setting < 1  ) P1_X_setting = 1;
 	if (P1_Y_setting > 190) P1_Y_setting = 190;
-	if (P1_Y_setting < 1) P1_Y_setting = 1;
+	if (P1_Y_setting < 1  ) P1_Y_setting = 1;
 
 }
 
@@ -114,9 +114,9 @@ void set_P2()
 	scanf("%d", &P2_Y_setting);
 
 	if (P2_X_setting > 254) P2_X_setting = 254;
-	if (P2_X_setting < 1) P2_X_setting = 1;
+	if (P2_X_setting < 1  ) P2_X_setting = 1;
 	if (P2_Y_setting > 190) P2_Y_setting = 190;
-	if (P2_Y_setting < 1) P2_Y_setting = 1;
+	if (P2_Y_setting < 1  ) P2_Y_setting = 1;
 }
 
 void set_P3()
@@ -137,9 +137,9 @@ void set_P3()
 	scanf("%d", &P3_Y_setting);
 
 	if (P3_Y_setting > 254) P3_Y_setting = 254;
-	if (P3_Y_setting < 1) P3_Y_setting = 1;
+	if (P3_Y_setting < 1  ) P3_Y_setting = 1;
 	if (P3_Y_setting > 190) P3_Y_setting = 190;
-	if (P3_Y_setting < 1) P3_Y_setting = 1;
+	if (P3_Y_setting < 1  ) P3_Y_setting = 1;
 }
 
 void options1 (void)
@@ -248,7 +248,7 @@ void printOptions (void)
         zx_border (2);
         printf("\x16\x01\x02");
 
-        printf ("Welcome to the Bezier Curve Demo V1.0");
+        printf ("Welcome to the Bezier Curve Demo V1.1");
         printf ("\n");
         printf ("press a key for test");
         printf ("\n");
@@ -275,9 +275,9 @@ void printOptions (void)
 
         printf ("Q- Original Bezier formula");
         printf ("\n");
-        printf ("W-T Optimzied Bezier formulas\n");
-
-        printf ("Press SPACE to STOP drawing");
+        printf ("W-Y Optimized Bezier formulas");
+        printf ("\n\n");
+        printf ("Press SPACE to STOP drawing\n");
     }
 
     options1();

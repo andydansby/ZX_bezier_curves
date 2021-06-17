@@ -10,25 +10,6 @@ float pow3 (float xx)
     return xx * xx * xx;
 }
 
-void plotControlPoints (void)
-{
-    plot(P0_X_setting, P0_Y_setting);   plot(P0_X_setting-1, P0_Y_setting);
-    plot(P0_X_setting, P0_Y_setting-1);   plot(P0_X_setting-1, P0_Y_setting-1);
-
-    //plot(P1_X_setting, P1_Y_setting);
-    plot(P1_X_setting, P1_Y_setting);   plot(P1_X_setting-1, P1_Y_setting);
-    plot(P1_X_setting, P1_Y_setting-1);   plot(P1_X_setting-1, P1_Y_setting-1);
-
-    //plot(P2_X_setting, P2_Y_setting);
-    plot(P2_X_setting, P2_Y_setting);   plot(P2_X_setting-1, P2_Y_setting);
-    plot(P2_X_setting, P2_Y_setting-1);   plot(P2_X_setting-1, P2_Y_setting-1);
-
-
-    //plot(P3_X_setting, P3_Y_setting);
-    plot(P3_X_setting, P3_Y_setting);   plot(P3_X_setting-1, P3_Y_setting);
-    plot(P3_X_setting, P3_Y_setting-1);   plot(P3_X_setting-1, P3_Y_setting-1);
-    return;
-}
 
 //standard Bezier plot
 //this one is based on
@@ -48,22 +29,24 @@ void bezierCurve(void)
 
     float xu = 0.0;
     float yu = 0.0;
-    float u = 0.0;
+    float t = 0.0;
 
     plotControlPoints ();
 
     while (1)
     {
-        xu = pow(1-u,3) * p0_x + 3 * u * pow(1-u,2) * p1_x + 3 * pow(u,2) * (1-u) * p2_x + pow(u,3) * p3_x;
+        //note: the built in power function is expensive.  The best way to counter it is to roll your own
+        //optimized for this particular task
+        xu = pow(1-t,3) * p0_x + 3 * t * pow(1-t,2) * p1_x + 3 * pow(t,2) * (1-t) * p2_x + pow(t,3) * p3_x;
 
-        yu = pow(1-u,3) * p0_y + 3 * u * pow(1-u,2) * p1_y + 3 * pow(u,2) * (1-u) * p2_y + pow(u,3) * p3_y;
+        yu = pow(1-t,3) * p0_y + 3 * t * pow(1-t,2) * p1_y + 3 * pow(t,2) * (1-t) * p2_y + pow(t,3) * p3_y;
 
         x = (int) xu;
         y = (int) yu;
 		plot(x, y);
-		u = u + 0.01;
+		t += 0.01;
 
-		if (u > 1.0)
+		if (t > 1.0)
         {
             break;
             //bezier goes wacky if out of range
@@ -92,7 +75,7 @@ void bezierCurve2(void)
 
     float xu = 0.0;
     float yu = 0.0;
-    float u = 0.0;
+    float t = 0.0;
 
     float xu0 = 0.0;
     float xu1 = 0.0;
@@ -110,26 +93,26 @@ void bezierCurve2(void)
     {
         //xu = pow(1-u,3) * p0_x + 3 * u * pow(1-u,2) * p1_x + 3 * pow(u,2) * (1-u) * p2_x + pow(u,3) * p3_x;
 
-        xu0 = pow3(1-u) * p0_x;
-        xu1 = 3 * u * pow2(1-u) * p1_x;
-        xu2 = 3 * pow2(u) * (1-u) * p2_x;
-        xu3 = pow3(u) * p3_x;
+        xu0 = pow3(1-t) * p0_x;
+        xu1 = 3 * t * pow2(1-t) * p1_x;
+        xu2 = 3 * pow2(t) * (1-t) * p2_x;
+        xu3 = pow3(t) * p3_x;
         xu = xu0 + xu1 + xu2 + xu3;
 
 
         //yu = pow(1-u,3) * p0_y + 3 * u * pow(1-u,2) * p1_y + 3 * pow(u,2) * (1-u) * p2_y + pow(u,3) * p3_y;
-        yu0 = pow3(1-u) * p0_y;
-        yu1 = 3 * u * pow2(1-u) * p1_y;
-        yu2 = 3 * pow2(u) * (1-u) * p2_y;
-        yu3 = pow3(u) * p3_y;
+        yu0 = pow3(1-t) * p0_y;
+        yu1 = 3 * t * pow2(1-t) * p1_y;
+        yu2 = 3 * pow2(t) * (1-t) * p2_y;
+        yu3 = pow3(t) * p3_y;
         yu = yu0 + yu1 + yu2 + yu3;
 
         x = (int) xu;
         y = (int) yu;
 		plot(x, y);
-		u = u + 0.01;
+		t += 0.01;
 
-		if (u > 1.0)
+		if (t > 1.0)
         {
             break;
             //bezier goes wacky if out of range
@@ -159,7 +142,7 @@ void bezierCurve3(void)
 
     float xu = 0.0;
     float yu = 0.0;
-    float u = 0.0;
+    float t = 0.0;
 
     float xu0 = 0.0;
     float xu1 = 0.0;
@@ -170,40 +153,40 @@ void bezierCurve3(void)
     float yu1 = 0.0;
     float yu2 = 0.0;
     float yu3 = 0.0;
-    float uu2 = 0;
-    float uu3 = 0;
-    float uu2_inv = 0;
-    float uu3_inv = 0;//uu3_inv
+    float tt2 = 0;
+    float tt3 = 0;
+    float tt2_inv = 0;
+    float tt3_inv = 0;
 
     plotControlPoints ();
 
     while (1)
     {
-        uu2 = u * u;
-        uu3 = u * u * u;
-        uu2_inv = (1-u) * (1-u);
-        uu3_inv = (1-u) * (1-u) * (1-u);
+        tt2 = t * t;
+        tt3 = t * t * t;
+        tt2_inv = (1-t) * (1-t);
+        tt3_inv = (1-t) * (1-t) * (1-t);
 
 
-        xu0 = uu3_inv * p0_x;
-        xu1 = 3 * u * uu2_inv * p1_x;
-        xu2 = 3 * uu2 * (1-u) * p2_x;
-        xu3 = uu3 * p3_x;
+        xu0 = tt3_inv * p0_x;
+        xu1 = 3 * t * tt2_inv * p1_x;
+        xu2 = 3 * tt2 * (1-t) * p2_x;
+        xu3 = tt3 * p3_x;
         xu = xu0 + xu1 + xu2 + xu3;
 
 
-        yu0 = uu3_inv * p0_y;
-        yu1 = 3 * u * uu2_inv * p1_y;
-        yu2 = 3 * uu2 * (1-u) * p2_y;
-        yu3 = uu3 * p3_y;
+        yu0 = tt3_inv * p0_y;
+        yu1 = 3 * t * tt2_inv * p1_y;
+        yu2 = 3 * tt2 * (1-t) * p2_y;
+        yu3 = tt3 * p3_y;
         yu = yu0 + yu1 + yu2 + yu3;
 
         x = (int) xu;
         y = (int) yu;
 		plot(x, y);
-		u = u + 0.01;
+		t += 0.01;
 
-		if (u > 1.0)
+		if (t > 1.0)
         {
             break;
             //bezier goes wacky if out of range
@@ -235,7 +218,7 @@ void bezierCurve4(void)
 
     float xu = 0.0;
     float yu = 0.0;
-    float u = 0.0;
+    float t = 0.0;
 
     float cu0 = 0.0;
     float cu1 = 0.0;
@@ -247,10 +230,10 @@ void bezierCurve4(void)
 
     while (1)
     {
-        cu0 = (1-u) * (1-u) * (1-u);
-        cu1 = 3 * (1-u) * (1-u) * u;
-        cu2 = 3 * (1-u) * u * u;
-        cu3 = u*u*u;
+        cu0 = (1-t) * (1-t) * (1-t);
+        cu1 = 3 * (1-t) * (1-t) * t;
+        cu2 = 3 * (1-t) * t * t;
+        cu3 = t*t*t;
 
         //looks quite like matrix multiplication
         xu = cu0 * p0_x + cu1 * p1_x + cu2 * p2_x + cu3 * p3_x;
@@ -259,9 +242,9 @@ void bezierCurve4(void)
         x = (int) xu;
         y = (int) yu;
 		plot(x, y);
-		u = u + 0.01;
+		t += 0.01;
 
-		if (u > 1.0)
+		if (t > 1.0)
         {
             break;
             //bezier goes wacky if out of range
@@ -293,11 +276,11 @@ void bezierCurve5(void)
 
     float xu = 0.0;
     float yu = 0.0;
-    float u = 0.0;
 
+    float t = 0.0;
+    float t2 = 0;
+    float t3 = 0;
 
-    float u2 = 0;
-    float u3 = 0;
     float mt = 0;
     float mt2 = 0;
     float mt3 = 0;
@@ -311,32 +294,32 @@ void bezierCurve5(void)
 
     while (1)
     {
-        u2 = u * u;
-        u3 = u2 * u;
+        t2 = t * t;
+        t3 = t2 * t;
 
-        mt = 1-u;
+        mt = 1-t;
         mt2 = mt * mt;
         mt3 = mt2 * mt;
 
         cu0 = p0_x * mt3;
-        cu1 = p1_x * 3 * mt2 * u;
-        cu2 = p2_x * 3 * mt * u2;
-        cu3 = p3_x * u3;
+        cu1 = p1_x * 3 * mt2 * t;
+        cu2 = p2_x * 3 * mt * t2;
+        cu3 = p3_x * t3;
         xu = cu0 + cu1 + cu2 + cu3;
 
 
         cu0 = p0_y * mt3;
-        cu1 = p1_y * 3 * mt2 * u;
-        cu2 = p2_y * 3 * mt * u2;
-        cu3 = p3_y * u3;
+        cu1 = p1_y * 3 * mt2 * t;
+        cu2 = p2_y * 3 * mt * t2;
+        cu3 = p3_y * t3;
         yu = cu0 + cu1 + cu2 + cu3;
 
         x = (int) xu;
         y = (int) yu;
 		plot(x, y);
-		u = u + 0.01;
+		t += 0.01;
 
-		if (u > 1.0)
+		if (t > 1.0)
         {
             break;
             //bezier goes wacky if out of range
@@ -401,7 +384,7 @@ void bezierCurve6(void)
         y = (unsigned char) yu;
 		plot(x, y);
 
-		t = t + 0.01;
+		t += 0.01;
 
 		if (t > 1.0)
         {

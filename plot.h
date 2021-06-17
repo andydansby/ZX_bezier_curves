@@ -31,5 +31,23 @@ void unplot(int x, int y, unsigned char colour)
 }
 
 
+void plotControlPoints (void)
+{
+    plot(P0_X_setting, P0_Y_setting);   plot(P0_X_setting-1, P0_Y_setting);
+    plot(P0_X_setting, P0_Y_setting-1);   plot(P0_X_setting-1, P0_Y_setting-1);
+
+    plot(P1_X_setting, P1_Y_setting);   plot(P1_X_setting-1, P1_Y_setting);
+    plot(P1_X_setting, P1_Y_setting-1);   plot(P1_X_setting-1, P1_Y_setting-1);
+
+    plot(P2_X_setting, P2_Y_setting);   plot(P2_X_setting-1, P2_Y_setting);
+    plot(P2_X_setting, P2_Y_setting-1);   plot(P2_X_setting-1, P2_Y_setting-1);
+
+    plot(P3_X_setting, P3_Y_setting);   plot(P3_X_setting-1, P3_Y_setting);
+    plot(P3_X_setting, P3_Y_setting-1);   plot(P3_X_setting-1, P3_Y_setting-1);
+
+    return;
+}
+
+
 #endif
 //leave blank line after
