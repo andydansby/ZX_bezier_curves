@@ -19,4 +19,4 @@ I use Code::Blocks as an IDE and compile with Z88dk.
 
 To compile, you will have to adjust the compile.bat file.  run compile.bat to compile with Z88dk.
 
-
+**note there is plenty of residual crud in the program, please be patient while I clean up my mess.
