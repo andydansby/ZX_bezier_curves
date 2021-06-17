@@ -378,19 +378,6 @@ void bezierCurve6(void)
     float t2 = 0;
     float t3 = 0;
 
-    //new variables introduced
-    /*
-    cx = 3 * (p2.X - p1.X),
-    cy = 3 * (p2.Y - p1.Y),
-
-    bx = 3 * (p3.X - p2.X) - cx,
-    by = 3 * (p3.Y - p2.Y) - cy,
-
-    ax = p4.X - p1.X - cx - bx,
-    ay = p4.Y - p1.Y - cy - by;
-    */
-
-
     plotControlPoints ();
 
     while (1)
