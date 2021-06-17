@@ -15,4 +15,8 @@ W - T are a series of optimized versions that perform considerably faster, run y
 
 any programming suggestions and code are appreciated.
 
+I use Code::Blocks as an IDE and compile with Z88dk.
+
+To compile, you will have to adjust the compile.bat file.  run compile.bat to compile with Z88dk.
+
 
